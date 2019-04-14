@@ -30,6 +30,22 @@
  *
  */
 function getFizzBuzz(num) {
+    if (num%15==0) {
+        return 'FizzBuzz'
+    } else {
+        if (num%3==0) {
+            return "Fizz"
+        
+        } else { 
+            if (num%5==0) {
+                return "Buzz"
+            } else {
+                return num
+            }
+        
+    }
+        
+    }
     throw new Error('Not implemented');
 }
 
@@ -46,6 +62,7 @@ function getFizzBuzz(num) {
  *   10 => 3628800
  */
 function getFactorial(n) {
+    return n ? n * getFactorial(n - 1) : 1;
     throw new Error('Not implemented');
 }
 
@@ -63,6 +80,7 @@ function getFactorial(n) {
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
 function getSumBetweenNumbers(n1, n2) {
+    return (n1 + n2)*((n2-n1+1)/2);
     throw new Error('Not implemented');
 }
 
@@ -82,6 +100,7 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,10,10 =>  true
  */
 function isTriangle(a,b,c) {
+    return a+b>c&&b+c>a&&a+c>b;
     throw new Error('Not implemented');
 }
 
@@ -150,6 +169,7 @@ function doRectanglesOverlap(rect1, rect2) {
  *   
  */
 function isInsideCircle(circle, point) {
+
     throw new Error('Not implemented');
 }
 
@@ -209,6 +229,7 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
+    return str=str.split('').reverse().join('');
     throw new Error('Not implemented');
 }
 
@@ -226,6 +247,7 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
+    return +num.toString().split("").reverse().join("")
     throw new Error('Not implemented');
 }
 
@@ -251,6 +273,12 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
+    return ccn.toString().split('')
+    .reverse()
+    .map( (x) => parseInt(x) )
+    .map( (x,idx) => idx % 2 ? x * 2 : x )
+    .map( (x) => x > 9 ? (x % 10) + 1 : x )
+    .reduce( (accum, x) => accum += x ) % 10 === 0;
     throw new Error('Not implemented');
 }
 
@@ -270,6 +298,7 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
+    return num%9
     throw new Error('Not implemented');
 }
 
@@ -395,7 +424,20 @@ function getCommonDirectoryPath(pathes) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(m1, m2) {
+function getMatrixProduct(A, B) {
+     var rowsA = A.length, colsA = A[0].length,
+        rowsB = B.length, colsB = B[0].length,
+        C = [];
+    if (colsA != rowsB) return false;
+    for (var i = 0; i < rowsA; i++) C[ i ] = [];
+    for (var k = 0; k < colsB; k++)
+     { for (var i = 0; i < rowsA; i++)
+        { var t = 0;
+          for (var j = 0; j < rowsB; j++) t += A[ i ][j]*B[j][k];
+          C[ i ][k] = t;
+        }
+     }
+    return C;
     throw new Error('Not implemented');
 }
 
